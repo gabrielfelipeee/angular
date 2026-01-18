@@ -1,0 +1,31 @@
+<div class="container">
+    <h1>Lista de Compras</h1>
+
+    <form #formAdd="ngForm" (submit)="adicionar(); formAdd.reset()">
+        <input type="text" placeholder="Adicione um Item" [(ngModel)]="item" name="item" />
+        <button type="submit">Adicionar</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Descrição</th>
+                <th>Comprado</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (produto of listaCompras; track $index) {
+            <tr>
+                <th>{{$index + 1}}</th>
+                <th>
+                    <span [ngClass]="{'produto-comprado': produto.comprado}">{{produto.name}}</span>
+                </th>
+                <th>
+                    <input type="checkbox" [checked]="produto.comprado" (click)="riscarProduto(produto)" />
+                </th>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

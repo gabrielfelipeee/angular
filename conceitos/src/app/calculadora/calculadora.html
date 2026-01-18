@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="form-box">
+        <h2>Calculadora</h2>
+        <form #formCalc="ngForm" (ngSubmit)="calcular();">
+            <div class="box-input">
+                <label for="num1">Número 1</label>
+                <input type="number" name="num1" id="num1" [(ngModel)]="num1" required />
+                @if (formCalc.controls['num1']?.invalid) {
+                <span class="input-error">Campo obrigatório!</span>
+                }
+            </div>
+
+            <div class="box-input">
+                <label for="num2">Número 2</label>
+                <input type="number" name="num2" id="num2" [(ngModel)]="num2" required />
+                @if (formCalc.controls['num2']?.invalid) {
+                <span class="input-error">Campo obrigatório!</span>
+                }
+            </div>
+            <button type="submit">Somar</button>
+        </form>
+        @if (result) {
+        <div class="result-display">
+            <p>Resultado: <span class="result">{{result}}</span></p>
+        </div>
+        }
+    </div>
+</div>
