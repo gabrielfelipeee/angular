@@ -1,0 +1,57 @@
+<div class="w-full max-w-[1500px] m-auto">
+
+    <mat-card class="flex flex-col gap-4  ml-auto mr-auto mt-8">
+        <mat-card-header>
+            <mat-card-title>Dados Pessoais</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+            <form id="formCliente" #formCliente="ngForm" class="grid grid-cols-12 gap-4"
+                (ngSubmit)="salvar(!!formCliente.invalid)">
+                <mat-form-field class="col-span-12 md:col-span-6">
+                    <mat-label>Nome</mat-label>
+                    <input matInput type="text" placeholder="Ex: Maria Silva" required name="nome"
+                        [(ngModel)]="cliente.nome" />
+                    <mat-error>Campo obrigatório</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="col-span-12 md:col-span-6">
+                    <mat-label>Email</mat-label>
+                    <input matInput type="email" placeholder="Ex: mariasilva@gmail.com" required name="email"
+                        [(ngModel)]="cliente.email" />
+                    <mat-error>Campo obrigatório</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="col-span-12 md:col-span-6">
+                    <mat-label>CPF</mat-label>
+                    <input matInput type="text" placeholder="Ex: 000.000.000-00" required name="cpf"
+                        [(ngModel)]="cliente.cpf" />
+                    <mat-error>Campo obrigatório</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="col-span-12 md:col-span-6">
+                    <mat-label>Data de Nascimento</mat-label>
+                    <input matInput type="date" required name="data_nascimento" [(ngModel)]="cliente.data_nascimento" />
+                    <mat-error>Campo obrigatório</mat-error>
+                </mat-form-field>
+            </form>
+        </mat-card-content>
+
+        <mat-card-actions class="flex justify-end">
+            <button mat-flat-button color="primary" class="mr-2" form="formCliente" type="submit">
+                <mat-icon>save</mat-icon>
+                Salvar
+            </button>
+
+            <button mat-flat-button color="primary" class="mr-2" form="formCliente" type="submit">
+                <mat-icon>refresh</mat-icon>
+                Atualizar
+            </button>
+
+            <button mat-flat-button color="accent" class="mr-2" form="formCliente" type="reset">
+                <mat-icon>backspace</mat-icon>
+                Limpar
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>
