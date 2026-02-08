@@ -7,7 +7,7 @@
 
         <mat-card-content>
             <form id="formCliente" #formCliente="ngForm" class="grid grid-cols-12 gap-4"
-                (ngSubmit)="salvar(!!formCliente.invalid)">
+                (ngSubmit)="salvarOrAtualizar(!!formCliente.invalid)">
                 <mat-form-field class="col-span-12 md:col-span-6">
                     <mat-label>Nome</mat-label>
                     <input matInput type="text" placeholder="Ex: Maria Silva" required name="nome"
@@ -38,14 +38,10 @@
         </mat-card-content>
 
         <mat-card-actions class="flex justify-end">
-            <button mat-flat-button color="primary" class="mr-2" form="formCliente" type="submit">
-                <mat-icon>save</mat-icon>
-                Salvar
-            </button>
 
             <button mat-flat-button color="primary" class="mr-2" form="formCliente" type="submit">
-                <mat-icon>refresh</mat-icon>
-                Atualizar
+                <mat-icon>{{isCadastro ? "save" : "refresh"}}</mat-icon>
+                {{isCadastro ? "Salvar" : "Atualizar"}}
             </button>
 
             <button mat-flat-button color="accent" class="mr-2" form="formCliente" type="reset">

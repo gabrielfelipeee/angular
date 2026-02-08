@@ -8,6 +8,8 @@ import { MatInputModule } from '@angular/material/input';
 import { ClienteService } from '../services/cliente.service';
 import { Cliente } from '../models/entities/cliente';
 import { MatTableModule } from '@angular/material/table';
+import { ActivatedRoute, Router } from '@angular/router';
+import { APP_ROUTES_PATHS } from '../constants/APP_ROUTES';
 
 @Component({
   selector: 'app-consulta',
@@ -31,17 +33,29 @@ import { MatTableModule } from '@angular/material/table';
 })
 export class Consulta implements OnInit {
   listaClientes: Cliente[] = [];
-  colunasTabelaClientes: string[] = ["id", "nome", "email", "cpf", "data_nascimento"];
+  colunasTabelaClientes: string[] = ["id", "nome", "email", "cpf", "data_nascimento", "acoes"];
 
   nomeBusca: string = "";
-  constructor(private clienteService: ClienteService) {
-  }
+  constructor(
+    private clienteService: ClienteService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.listaClientes = this.clienteService.filtrarClientes("");
-  }
+  };
 
   pesquisar() {
     this.listaClientes = this.clienteService.filtrarClientes(this.nomeBusca);
-  }
+  };
+
+  preparaEditar(clienteId: string) {
+    this.router.navigate(APP_ROUTES_PATHS.CLIENTES.editar(clienteId));
+  };
+
+  excluir(clienteId: string): void {
+    const sucesso = this.clienteService.excluir(clienteId);
+    if (sucesso)
+      this.listaClientes = this.clienteService.filtrarClientes(this.nomeBusca);
+  };
 }
