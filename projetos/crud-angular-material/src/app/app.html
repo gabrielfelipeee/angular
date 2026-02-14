@@ -4,14 +4,16 @@
 
         <span class="flex-1"></span>
 
-        <a matButton="outlined" routerLink="/cadastro" class="flex items-center justify-center mr-4">
-            <mat-icon fontIcon="feed"></mat-icon>
-            Cadastro
-        </a>
-        <a matButton="outlined" routerLink="/consulta" class="flex items-center justify-center">
+        <a matButton="outlined" [routerLink]="CLIENTES_PATHS.root()" class="flex items-center justify-center mr-4">
             <mat-icon fontIcon="search"></mat-icon>
             Consulta
         </a>
+
+        <a matButton="outlined" [routerLink]="CLIENTES_PATHS.cadastro()" class="flex items-center justify-center">
+            <mat-icon fontIcon="feed"></mat-icon>
+            Cadastro
+        </a>
+
     </div>
 </mat-toolbar>
 

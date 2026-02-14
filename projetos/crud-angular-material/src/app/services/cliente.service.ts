@@ -19,11 +19,37 @@ export class ClienteService {
     return clientes;
   };
 
-  add(cliente: Cliente) {
+  adicionar(cliente: Cliente) {
     const storage = this.obterStorage();
     storage.push(cliente);
 
     localStorage.setItem(ClienteService.REPO_CLIENTES, JSON.stringify(storage))
+  };
+  atualizar(cliente: Cliente) {
+    const storage = this.obterStorage();
+
+    const index = storage.findIndex(cli => cli.id === cliente.id);
+    if (index === -1) return;
+    storage[index] = { ...storage[index], ...cliente };
+
+    localStorage.setItem(ClienteService.REPO_CLIENTES, JSON.stringify(storage))
+  };
+
+  excluir(clienteId: string): boolean {
+    const storage = this.obterStorage();
+
+    const novoStorage = storage.filter(cli => cli.id !== clienteId);
+
+    if (novoStorage.length === storage.length)
+      return false;
+
+    localStorage.setItem(ClienteService.REPO_CLIENTES, JSON.stringify(novoStorage));
+    return true;
+  };
+
+
+  buscarClientePorId(clientId: string): Cliente | undefined {
+    return this.obterStorage().find(cliente => cliente.id === clientId);
   };
 
   filtrarClientes(nomeBusca: string): Cliente[] {
@@ -38,5 +64,5 @@ export class ClienteService {
     // "Maria".indexOf("Jo") // -1 -> Retorna -1 se não encontrar 
     const clientesFiltrados: Cliente[] = allClientes.filter(cliente => cliente.nome?.toLowerCase().indexOf(nomeBusca.toLowerCase()) !== -1);
     return clientesFiltrados;
-  }
+  };
 };
