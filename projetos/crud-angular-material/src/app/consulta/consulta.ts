@@ -10,6 +10,7 @@ import { Cliente } from '../models/entities/cliente';
 import { MatTableModule } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { APP_ROUTES_PATHS } from '../constants/APP_ROUTES';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-consulta',
@@ -38,7 +39,8 @@ export class Consulta implements OnInit {
   nomeBusca: string = "";
   constructor(
     private clienteService: ClienteService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -55,7 +57,13 @@ export class Consulta implements OnInit {
 
   excluir(clienteId: string): void {
     const sucesso = this.clienteService.excluir(clienteId);
-    if (sucesso)
-      this.listaClientes = this.clienteService.filtrarClientes(this.nomeBusca);
+    if (!sucesso) return;
+
+    this.listaClientes = this.clienteService.filtrarClientes(this.nomeBusca);
+    this.exibirMensagem("Cliente excluído com sucesso!");
+  };
+
+  exibirMensagem(mensagem: string) {
+    this.snackBar.open(mensagem, "Ok");
   };
 }

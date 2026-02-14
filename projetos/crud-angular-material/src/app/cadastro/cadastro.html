@@ -24,14 +24,38 @@
 
                 <mat-form-field class="col-span-12 md:col-span-6">
                     <mat-label>CPF</mat-label>
-                    <input matInput type="text" placeholder="Ex: 000.000.000-00" required name="cpf"
-                        [(ngModel)]="cliente.cpf" />
+                    <input matInput type="text" placeholder="Ex: 000.000.000-00" name="cpf" [value]="cliente.cpf ?? ''"
+                        [(ngModel)]="cliente.cpf" mask="000.000.000-00" />
                     <mat-error>Campo obrigatório</mat-error>
                 </mat-form-field>
 
                 <mat-form-field class="col-span-12 md:col-span-6">
                     <mat-label>Data de Nascimento</mat-label>
-                    <input matInput type="date" required name="data_nascimento" [(ngModel)]="cliente.data_nascimento" />
+                    <input matInput type="date" name="data_nascimento" [(ngModel)]="cliente.data_nascimento" />
+                    <mat-error>Campo obrigatório</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="col-span-12 md:col-span-6">
+                    <mat-label>Estado</mat-label>
+
+                    <mat-select [(value)]="cliente.uf" name="uf" (selectionChange)="onSelectEstado($event)">
+                        @for (estado of estadosBrasil; track $index) {
+                        <mat-option [value]="estado.sigla">{{estado.nome}}</mat-option>
+                        }
+                    </mat-select>
+
+                    <mat-error>Campo obrigatório</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="col-span-12 md:col-span-6">
+                    <mat-label>Município</mat-label>
+
+                    <mat-select [(value)]="cliente.municipio" name="uf">
+                        @for (estado of municipiosEstado; track $index) {
+                        <mat-option [value]="estado.nome">{{estado.nome}}</mat-option>
+                        }
+                    </mat-select>
+
                     <mat-error>Campo obrigatório</mat-error>
                 </mat-form-field>
             </form>
