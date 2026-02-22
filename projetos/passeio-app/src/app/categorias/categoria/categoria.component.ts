@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CategoriaService } from '../categoria.service';
 
 @Component({
   selector: 'app-categoria-component',
@@ -7,6 +8,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   templateUrl: './categoria.component.html',
 })
 export class CategoriaComponent implements OnInit {
+  private readonly categoriaService = inject(CategoriaService);
+
   categoriaForm!: FormGroup;
 
   ngOnInit(): void {
@@ -32,10 +35,15 @@ export class CategoriaComponent implements OnInit {
     if (this.categoriaForm.invalid) {
       this.categoriaForm.markAllAsTouched();;
       return;
-    }
+    };
 
-    console.log(this.categoriaForm.getRawValue())
+    this.categoriaService.create(this.categoriaForm.getRawValue())
+      .subscribe({
+        next: () => {
+          this.categoriaForm.reset();
+        },
+        error: error => console.error(error)
+      });
   };
-
 
 };
