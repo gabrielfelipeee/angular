@@ -1,0 +1,41 @@
+<header
+  class="sticky top-0 bg-bg-base text-text-base border-b border-border-default shadow-sm m-auto grid items-center justify-center px-6 py-4"
+>
+  <div class="w-[90vw] max-w-360 flex items-center justify-between">
+    <!--<h1 class="text-2xl font-semibold text-brand">Título</h1>-->
+    <img src="./logo2.svg" class="w-58 border" alt="">
+
+    <div class="flex items-center justify-center gap-x-8">
+      <nav>
+        <ul class="flex items-center justify-center gap-6 font-medium list-none cursor-pointer">
+          <li>
+            <a class="transition-colors duration-200 hover:text-brand"> Galeria </a>
+          </li>
+          <li>
+            <a class="transition-colors duration-200 hover:text-brand"> Categorias </a>
+          </li>
+          <li>
+            <a class="transition-colors duration-200 hover:text-brand"> Lugares </a>
+          </li>
+          <li>
+            <a class="transition-colors duration-200 hover:text-brand"> Sair </a>
+          </li>
+        </ul>
+      </nav>
+
+      <span class="material-symbols-outlined cursor-pointer" (click)="toggleTheme()">
+        {{ theme === 'dark' ? 'sunny' : 'dark_mode' }}
+      </span>
+    </div>
+  </div>
+</header>
+
+<main class="bg-surface grid items-start justify-center pt-3 pb-6 min-h-[calc(100vh-118px)]">
+  <div class="w-[90vw] max-w-360">
+    <router-outlet />
+  </div>
+</main>
+
+<footer class="w-full bg-bg-base border-t border-border-default text-center p-4">
+  <p class="text-text-muted text-sm">2026 - Todos os direitos reservados</p>
+</footer>

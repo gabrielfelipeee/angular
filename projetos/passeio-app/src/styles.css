@@ -1,9 +1,54 @@
 /* You can add global styles to this file, and also import other style files */
-@import "tailwindcss/theme";
-@import "tailwindcss/utilities";
+@import 'tailwindcss/theme';
+@import 'tailwindcss/utilities';
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  font-family: 'Inter';
+}
+
+/* Ativa dark manual */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* LIGHT THEME */
+@theme {
+  /* ===== Base ===== */
+  --color-bg-base: oklch(99% 0.01 280);
+  --color-text-base: oklch(22% 0.02 280);
+  --color-text-muted: oklch(48% 0.02 280);
+
+  /* ===== Primary (Roxo) ===== */
+  --color-brand: oklch(62% 0.22 285);
+  --color-brand-contrast: oklch(98% 0.01 280);
+
+  /* ===== Superfícies ===== */
+  --color-surface: oklch(96% 0.01 280);
+  --color-surface-text: oklch(24% 0.02 280);
+
+  /* ===== Estados ===== */
+  --color-border-default: oklch(88% 0.01 280);
+  --color-ring-focus: oklch(70% 0.2 285);
+}
+
+/* DARK THEME */
+.dark {
+  /* ===== Base ===== */
+  --color-bg-base: oklch(17% 0.02 285);
+  --color-text-base: oklch(96% 0.01 280);
+  --color-text-muted: oklch(70% 0.02 280);
+
+  /* ===== Primary (Roxo mais vibrante no dark) ===== */
+  --color-brand: oklch(72% 0.24 285);
+  --color-brand-contrast: oklch(18% 0.02 285);
+
+  /* ===== Superfícies ===== */
+  --color-surface: oklch(23% 0.02 285);
+  --color-surface-text: oklch(95% 0.01 280);
+
+  /* ===== Estados ===== */
+  --color-border-default: oklch(34% 0.02 285);
+  --color-ring-focus: oklch(75% 0.22 285);
 }

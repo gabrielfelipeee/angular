@@ -1,0 +1,64 @@
+<div class="bg-surface text-surface-text p-6 rounded-2xl max-full border border-border-default">
+  <h2 class="text-center text-2xl text-brand font-semibold">Nova Categoria</h2>
+
+  <hr class="border-border-default mt-2 mb-4" />
+
+  <form [formGroup]="categoriaForm" (ngSubmit)="salvarCategoria()" class="grid gap-2">
+    <div class="flex flex-col">
+      <label for="nome" class="text-text-muted"> Nome </label>
+
+      <input
+        formControlName="nome"
+        type="text"
+        placeholder="Ex: Restaurante"
+        id="nome"
+        class="mt-1 pl-6 p-2 rounded-md text-base bg-bg-base text-surface-text border border-border-default outline-none focus:border-brand focus:ring-2 focus:ring-brand/30 transition-colors duration-200"
+        [class.border-red-500]="isCampoInvalido('nome')"
+      />
+
+      <span
+        class="text-red-500 text-sm truncate transition-all duration-200 ease-out transform"
+        [ngClass]="{
+          'opacity-0 -translate-y-1': !isCampoInvalido('nome'),
+          'opacity-100 translate-y-0': isCampoInvalido('nome'),
+        }"
+      >
+        Nome é obrigatório
+      </span>
+    </div>
+
+    <div class="flex flex-col">
+      <label for="descricao" class="text-text-muted"> Descrição </label>
+
+      <textarea
+        formControlName="descricao"
+        rows="4"
+        placeholder="Ex: Restaurante"
+        id="descricao"
+        class="w-full resize-y mt-1 pl-6 p-2 rounded-md text-base text-surface-text bg-bg-base border border-border-default outline-none focus:border-brand focus:ring-2 focus:ring-brand/30 transition-colors duration-200"
+        [class.border-red-500]="isCampoInvalido('descricao')"
+      ></textarea>
+
+      <span
+        class="text-red-500 text-sm truncate transition-all duration-200 ease-out transform"
+        [ngClass]="{
+          'opacity-0 -translate-y-1': !isCampoInvalido('descricao'),
+          'opacity-100 translate-y-0': isCampoInvalido('descricao'),
+        }"
+      >
+        @if (categoriaForm.get('descricao')?.errors?.['required']) {
+          Descrição é obrigatória
+        } @else {
+          Máximo é 500 caracteres
+        }
+      </span>
+    </div>
+
+    <button
+      type="submit"
+      class="flex justify-self-end border border-brand text-brand font-semibold text-base px-4 py-2 rounded-md bg-transparent cursor-pointer transition-all duration-300 hover:bg-brand hover:text-brand-contrast hover:scale-105"
+    >
+      Salvar
+    </button>
+  </form>
+</div>
