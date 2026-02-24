@@ -1,3 +1,32 @@
 {
-  "categorias": []
+  "categorias": [
+    {
+      "id": "cfe9",
+      "nome": "Shoppings",
+      "descricao": "Compras, Lazer"
+    },
+    {
+      "id": "aea8",
+      "nome": "Super Mercado",
+      "descricao": "Compras"
+    }
+  ],
+  "lugares": [
+    {
+      "id": "8083",
+      "nome": "tyh",
+      "categoriaId": "cfe9",
+      "localizacao": "hthjytjy",
+      "urlImagem": "yiytjtyjty",
+      "avaliacao": 2
+    },
+    {
+      "id": "ad6d",
+      "nome": "fghnfgbn",
+      "categoriaId": "aea8",
+      "localizacao": "gngbn",
+      "urlImagem": "gngn",
+      "avaliacao": "null"
+    }
+  ]
 }

@@ -1,0 +1,101 @@
+<div class="bg-surface text-surface-text p-6 rounded-2xl max-full border border-border-default">
+    <h2 class="text-center text-2xl text-brand font-semibold">Novo Lugar</h2>
+
+    <hr class="border-border-default mt-2 mb-4" />
+
+    <form [formGroup]="lugarForm" (ngSubmit)="salvarLugar()" class="grid gap-2">
+        <div class="flex flex-col">
+            <label for="nome" class="text-text-muted"> Nome </label>
+
+            <input formControlName="nome" type="text" placeholder="Ex: Shopping Vitória" id="nome"
+                class="mt-1 pl-6 p-2 rounded-md text-base bg-bg-base text-surface-text border border-border-default outline-none focus:border-brand focus:ring-2 focus:ring-brand/30 transition-colors duration-200"
+                [class.border-red-500]="isCampoInvalido('nome')" />
+
+            <span class="text-red-500 text-sm truncate transition-all duration-200 ease-out transform" [ngClass]="{
+                'opacity-0 -translate-y-1': !isCampoInvalido('nome'),
+                'opacity-100 translate-y-0': isCampoInvalido('nome'),
+                }">
+                Nome é obrigatório
+            </span>
+        </div>
+
+        <div class="flex flex-col">
+            <label for="categoriaId" class="text-text-muted"> Categoria </label>
+
+            <select name="categoriaId" id="categoriaId" formControlName="categoriaId"
+                class="mt-1 pl-6 p-2 rounded-md text-base bg-bg-base text-surface-text border border-border-default outline-none focus:border-brand focus:ring-2 focus:ring-brand/30 transition-colors duration-200" 
+                [class.border-red-500]="isCampoInvalido('categoriaId')" >
+
+                <option value="">Selecione uma Categoria</option>
+
+                @for (categoria of categorias; track $index) {
+                <option [value]="categoria.id">{{categoria.nome}}</option>
+                }
+            </select>
+
+            <span class="text-red-500 text-sm truncate transition-all duration-200 ease-out transform" [ngClass]="{
+                'opacity-0 -translate-y-1': !isCampoInvalido('categoriaId'),
+                'opacity-100 translate-y-0': isCampoInvalido('categoriaId'),
+                }">
+                Categoria é obrigatória
+            </span>
+        </div>
+
+        <div class="flex flex-col">
+            <label for="localizacao" class="text-text-muted"> Localização </label>
+
+            <input formControlName="localizacao" type="text" placeholder="Vitória - ES" id="localizacao"
+                class="mt-1 pl-6 p-2 rounded-md text-base bg-bg-base text-surface-text border border-border-default outline-none focus:border-brand focus:ring-2 focus:ring-brand/30 transition-colors duration-200"
+                [class.border-red-500]="isCampoInvalido('localizacao')" />
+
+            <span class="text-red-500 text-sm truncate transition-all duration-200 ease-out transform" [ngClass]="{
+                'opacity-0 -translate-y-1': !isCampoInvalido('localizacao'),
+                'opacity-100 translate-y-0': isCampoInvalido('localizacao'),
+                }">
+                Localização é obrigatório
+            </span>
+        </div>
+
+        <div class="flex flex-col">
+            <label for="urlImagem" class="text-text-muted"> URL da imagem </label>
+
+            <input formControlName="urlImagem" type="text" placeholder="https://suaimagem.com.png" id="urlImagem"
+                class="mt-1 pl-6 p-2 rounded-md text-base bg-bg-base text-surface-text border border-border-default outline-none focus:border-brand focus:ring-2 focus:ring-brand/30 transition-colors duration-200"
+                [class.border-red-500]="isCampoInvalido('urlImagem')" />
+
+            <span class="text-red-500 text-sm truncate transition-all duration-200 ease-out transform" [ngClass]="{
+                'opacity-0 -translate-y-1': !isCampoInvalido('urlImagem'),
+                'opacity-100 translate-y-0': isCampoInvalido('urlImagem'),
+                }">
+                Imagem é obrigatória
+            </span>
+        </div>
+        
+        <div class="flex flex-col">
+            <label for="avaliacao" class="text-text-muted"> Avaliação </label>
+            
+            <select name="avaliacao" id="avaliacao" formControlName="avaliacao"
+                class="mt-1 pl-6 p-2 rounded-md text-base bg-bg-base text-surface-text border border-border-default outline-none focus:border-brand focus:ring-2 focus:ring-brand/30 transition-colors duration-200" 
+                [class.border-red-500]="isCampoInvalido('avaliacao')" >
+
+                <option [ngValue]="null">Selecione uma Avaliação</option>
+
+                @for (avaliacao of avaliacoes; track $index) {
+                <option [ngValue]="avaliacao.value">{{avaliacao.label}}</option>
+                }
+            </select>
+
+            <span class="text-red-500 text-sm truncate transition-all duration-200 ease-out transform" [ngClass]="{
+                'opacity-0 -translate-y-1': !isCampoInvalido('avaliacao'),
+                'opacity-100 translate-y-0': isCampoInvalido('avaliacao'),
+                }">
+                Categoria é obrigatória
+            </span>
+        </div>
+
+        <button type="submit"
+            class="flex justify-self-end border border-brand text-brand font-semibold text-base px-4 py-2 rounded-md bg-transparent cursor-pointer transition-all duration-300 hover:bg-brand hover:text-brand-contrast hover:scale-105">
+            Salvar
+        </button>
+    </form>
+</div>

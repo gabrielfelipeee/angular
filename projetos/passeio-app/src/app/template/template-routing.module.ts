@@ -10,7 +10,14 @@ const routes: Routes = [
       {
         path: 'categorias',
         loadChildren: () => import('../categorias/categorias.module')
-          .then(module => module.CategoriasModule)
+          .then(module => module.CategoriasModule),
+        pathMatch: 'full'
+      },
+      {
+        path: 'lugares',
+        loadChildren: () => import('../lugares/lugares.module')
+          .then(module => module.LugaresModule),
+        pathMatch: 'full'
       }
     ]
   }
