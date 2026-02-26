@@ -1,0 +1,61 @@
+<form role="search" [formGroup]="formFiltro">
+    <fieldset class="grid grid-cols-2 gap-4 border-none">
+        <legend class="sr-only">Filtros de busca</legend>
+
+        <div>
+            <label for="pesquisa" class="sr-only">Pesquisar lugares</label>
+            <input formControlName="pesquisa" id="pesquisa" type="search" placeholder="Pesquisar..."
+                class="w-full mt-1 pl-6 p-2 rounded-md text-base bg-bg-base text-surface-text border border-border-default outline-none focus:border-brand focus:ring-2 focus:ring-brand/30 transition-colors duration-200" />
+        </div>
+
+        <div>
+            <label for="categoria" class="sr-only">Filtrar por categoria</label>
+            <select formControlName="categoriaId" id="categoria"
+                class="w-full mt-1 pl-6 p-2 rounded-md text-base bg-bg-base text-surface-text border border-border-default outline-none focus:border-brand focus:ring-2 focus:ring-brand/30 transition-colors duration-200">
+                <option [ngValue]="null">Todas as categorias</option>
+
+                @for (categoria of categorias; track categoria.id) {
+                <option [ngValue]="categoria.id">
+                    {{ categoria.nome }}
+                </option>
+                }
+            </select>
+        </div>
+    </fieldset>
+</form>
+
+<hr class="border border-border-default mt-4 mb-6">
+
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-self-center gap-4">
+    <h2 id="lista-lugares" class="sr-only">Lista de lugares</h2>
+
+    @for (lugar of lugaresFiltrados; track $index) {
+    <article class="text-surface-text rounded-t-md shadow-md rounded-b-md border border-t-0 border-border-default">
+
+        <img [src]="lugar.urlImagem" [alt]="'Imagem do(a) ' + lugar.nome" class="w-full rounded-t-sm -mb-1">
+
+        <div class="bg-surface rounded-b-md p-4">
+
+            <h2 class="text-brand font-semibold truncate">{{lugar.nome}}</h2>
+
+            <dl class="flex flex-col gap-1.5 mt-3 text-surface-text truncate">
+
+                <div class="flex items-center gap-x-2 truncate">
+                    <dt class="font-medium">Categoria:</dt>
+                    <dd>{{ getNomeCategoria(lugar) }}</dd>
+                </div>
+
+                <div class="flex items-center gap-x-2 truncate">
+                    <dt class="font-medium">Localização:</dt>
+                    <dd>{{ lugar.localizacao }}</dd>
+                </div>
+
+            </dl>
+
+            <span [innerHTML]="gerarEstrelas(lugar.avaliacao)" class="text-2xl text-amber-400 flex"></span>
+
+        </div>
+
+    </article>
+    }
+</section>

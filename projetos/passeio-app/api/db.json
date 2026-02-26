@@ -17,7 +17,7 @@
       "nome": "tyh",
       "categoriaId": "cfe9",
       "localizacao": "hthjytjy",
-      "urlImagem": "yiytjtyjty",
+      "urlImagem": "https://midias-turismo.eurodicas.com.br/wp-content/uploads/2025/02/anfield-stadium-tour-1.jpg.webp",
       "avaliacao": 2
     },
     {
@@ -25,8 +25,16 @@
       "nome": "fghnfgbn",
       "categoriaId": "aea8",
       "localizacao": "gngbn",
-      "urlImagem": "gngn",
+      "urlImagem": "https://www.fcbarcelona.com/photo-resources/2021/08/09/c4f2dddd-2152-4b8b-acf8-826b4377e29d/Camp-Nou-4.jpg?width=840&height=525",
       "avaliacao": "null"
+    },
+    {
+      "id": "9458",
+      "nome": "Praia  ES",
+      "categoriaId": "cfe9",
+      "localizacao": "Vitória ES",
+      "urlImagem": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/07/52/8c/26/praia-do-pontal.jpg?w=1000&h=-1&s=1",
+      "avaliacao": 5
     }
   ]
 }

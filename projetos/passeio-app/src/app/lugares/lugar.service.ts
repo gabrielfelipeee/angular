@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Lugar } from './lugar';
@@ -17,6 +17,18 @@ export class LugarService {
 
   getAll(): Observable<Lugar[]> {
     return this.httpClient.get<Lugar[]>(this.baseUrl);
+  };
+
+  filtrar(categoriaId: string | null, pesquisa: string | null): Observable<Lugar[]> {
+    let params = new HttpParams();
+
+    if (categoriaId)
+      params = params.set('categoriaId_like', categoriaId);
+
+    if (pesquisa)
+      params = params.set('nome_like', pesquisa);
+
+    return this.httpClient.get<Lugar[]>(this.baseUrl, { params });
   };
 
 };
