@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { filter, map } from 'rxjs';
 
 type Theme = 'default' | 'dark';
 
@@ -7,15 +9,40 @@ type Theme = 'default' | 'dark';
   standalone: false,
   templateUrl: './layout.component.html',
 })
-export class LayoutComponent {
+export class LayoutComponent implements OnInit {
+
+  private readonly router = inject(Router);
+  private readonly route = inject(ActivatedRoute);
+  private readonly changeDetector = inject(ChangeDetectorRef);
+
   theme: Theme = 'default';
   private readonly themeKey = 'theme';
   private readonly themes: Theme[] = ['default', 'dark'];
 
-  constructor() {
-    this.loadTheme();
-  }
 
+  title: string = "";
+
+  ngOnInit(): void {
+    this.loadTheme();
+
+    this.router.events
+      .pipe(filter(() => this.route.firstChild !== null))
+      .subscribe(() => this.setTitlePage());
+      
+  };
+
+  setTitlePage() {
+    let rotaFilha = this.route.firstChild;
+
+    while (rotaFilha?.firstChild)
+      rotaFilha = rotaFilha.firstChild;
+
+    this.title = rotaFilha?.snapshot.data['title'] as string ?? "";
+    this.changeDetector.markForCheck();
+  };
+
+
+  // Theme 
   private loadTheme(): void {
     const storedTheme = localStorage.getItem(this.themeKey) as Theme | null;
 

@@ -2,22 +2,25 @@
   class="sticky top-0 bg-bg-base text-text-base border-b border-border-default shadow-sm m-auto grid items-center justify-center px-6 py-4">
   <div class="w-[90vw] max-w-360 flex items-center justify-between">
 
-    <h1 class="text-2xl font-semibold text-brand">Título</h1>
+    <h1 class="text-2xl font-semibold text-brand">{{title}}</h1>
 
     <div class="flex items-center justify-center gap-x-8">
       <nav>
         <ul class="flex items-center justify-center gap-6 font-medium list-none cursor-pointer">
           <li>
-            <a class="transition-colors duration-200 hover:text-brand"> Galeria </a>
+            <a routerLink="/paginas/galeria"
+              class="transition-colors duration-200 no-underline text-inherit u hover:text-brand"> Galeria </a>
           </li>
           <li>
-            <a class="transition-colors duration-200 hover:text-brand"> Categorias </a>
+            <a routerLink="/paginas/categorias"
+              class="transition-colors duration-200 no-underline text-inherit u hover:text-brand"> Categorias </a>
           </li>
           <li>
-            <a class="transition-colors duration-200 hover:text-brand"> Lugares </a>
+            <a routerLink="/paginas/lugares"
+              class="transition-colors duration-200 no-underline text-inherit u hover:text-brand"> Lugares </a>
           </li>
           <li>
-            <a class="transition-colors duration-200 hover:text-brand"> Sair </a>
+            <a class="transition-colors duration-200 no-underline text-inherit u hover:text-brand"> Sair </a>
           </li>
         </ul>
       </nav>

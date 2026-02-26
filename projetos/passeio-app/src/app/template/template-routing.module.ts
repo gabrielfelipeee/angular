@@ -11,13 +11,22 @@ const routes: Routes = [
         path: 'categorias',
         loadChildren: () => import('../categorias/categorias.module')
           .then(module => module.CategoriasModule),
-        pathMatch: 'full'
+        pathMatch: 'full',
+        data: { title: "Categorias" }
       },
       {
         path: 'lugares',
         loadChildren: () => import('../lugares/lugares.module')
           .then(module => module.LugaresModule),
-        pathMatch: 'full'
+        pathMatch: 'full',
+        data: { title: "Lugares" }
+      },
+      {
+        path: 'galeria',
+        loadChildren: () => import('../galeria/galeria.module')
+          .then(module => module.GaleriaModule),
+        pathMatch: 'full',
+        data: { title: "Galeria" }
       }
     ]
   }
