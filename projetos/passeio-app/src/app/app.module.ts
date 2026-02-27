@@ -4,10 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { provideOAuthClient } from 'angular-oauth2-oidc';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,
@@ -15,7 +18,8 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideHttpClient(withFetch())
+    provideHttpClient(withFetch()),
+    provideOAuthClient()
   ],
   bootstrap: [AppComponent]
 })

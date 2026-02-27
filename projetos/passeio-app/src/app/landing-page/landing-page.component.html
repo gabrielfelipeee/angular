@@ -1,0 +1,51 @@
+<div class="min-h-screen flex items-center justify-center px-6 bg-bg-base text-text-base">
+
+    <!-- Card -->
+    <div class="w-full max-w-md rounded-3xl p-10 shadow-xl bg-surface border border-border-default text-surface-text">
+
+        <!-- Logo / Brand -->
+        <div class="mb-8 text-center">
+
+            <h1 class="text-2xl font-semibold tracking-tight text-brand">
+                {{isLoggedIn() ? 'Bem-vindo, ' + profile!.name + '!' : 'Bem-vindo!'}}
+            </h1>
+
+            <p class="mt-2 text-sm text-text-muted">
+                Faça login para acessar sua conta
+            </p>
+        </div>
+
+        <!-- Botão Google -->
+        @if (isLoggedIn()) {
+        <button
+            class="w-full flex justify-center items-center border gap-x-4 border-brand text-brand font-semibold text-base px-4 py-2 rounded-md bg-transparent cursor-pointer transition-all duration-300 hover:bg-brand hover:text-brand-contrast hover:scale-103"
+            (click)="navegar()">
+            Entrar
+        </button>
+        } @else {
+        <button
+            class="w-full flex justify-center items-center border gap-x-4 border-brand text-brand font-semibold text-base px-4 py-1 rounded-md bg-transparent cursor-pointer transition-all duration-300 hover:bg-brand hover:text-brand-contrast hover:scale-103"
+            (click)="loginGoogle()">
+
+            <!-- Ícone Google -->
+            <img src="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png"
+                alt="Logo do Google" class="w-10">
+
+            Entrar com Google
+        </button>
+        }
+
+        <!-- Divider -->
+        <div class="my-8 flex items-center gap-4 text-xs text-text-muted">
+            <div class="flex-1 h-px bg-border-default"></div>
+            <span>Seguro e rápido</span>
+            <div class="flex-1 h-px bg-border-default"></div>
+        </div>
+
+        <!-- Footer -->
+        <p class="text-xs text-center text-text-muted">
+            Ao continuar, você concorda com nossos termos.
+        </p>
+
+    </div>
+</div>

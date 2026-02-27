@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { filter, map } from 'rxjs';
+import { AuthGoogleService } from '../../auth-google.service';
 
 type Theme = 'default' | 'dark';
 
@@ -15,6 +16,8 @@ export class LayoutComponent implements OnInit {
   private readonly route = inject(ActivatedRoute);
   private readonly changeDetector = inject(ChangeDetectorRef);
 
+  private readonly authGoogleService = inject(AuthGoogleService);
+
   theme: Theme = 'default';
   private readonly themeKey = 'theme';
   private readonly themes: Theme[] = ['default', 'dark'];
@@ -28,7 +31,7 @@ export class LayoutComponent implements OnInit {
     this.router.events
       .pipe(filter(() => this.route.firstChild !== null))
       .subscribe(() => this.setTitlePage());
-      
+
   };
 
   setTitlePage() {
@@ -39,6 +42,10 @@ export class LayoutComponent implements OnInit {
 
     this.title = rotaFilha?.snapshot.data['title'] as string ?? "";
     this.changeDetector.markForCheck();
+  };
+
+  sair() {
+    this.authGoogleService.logout();
   };
 
 
