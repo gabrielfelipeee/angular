@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Lugar } from './lugar';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,7 @@ import { Lugar } from './lugar';
 export class LugarService {
   private readonly httpClient = inject(HttpClient);
 
-  private readonly baseUrl = 'http://localhost:3000/lugares';
+  private readonly baseUrl = `${environment.apiUrl}/lugares`;
 
   create(lugar: Lugar): Observable<Lugar> {
     return this.httpClient.post<Lugar>(this.baseUrl, lugar);
