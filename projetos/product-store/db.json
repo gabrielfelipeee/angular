@@ -1,0 +1,41 @@
+{
+  "products": [
+    {
+      "id": "fefrf",
+      "title": "Prodcuct Test"
+    },
+    {
+      "id": "08fc",
+      "title": "Teste"
+    },
+    {
+      "id": "5433",
+      "title": "Teste"
+    },
+    {
+      "id": "8d72",
+      "title": "Teste"
+    },
+    {
+      "id": "4ca6",
+      "title": "Teste"
+    },
+    {
+      "id": "4d8c",
+      "title": "teste1223"
+    },
+    {
+      "id": "28d6",
+      "title": "Teste123"
+    },
+    {
+      "id": "e237",
+      "title": "Camisa"
+    },
+    {
+      "id": "80b3",
+      "title": "Tënis"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

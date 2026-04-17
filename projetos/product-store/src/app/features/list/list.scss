@@ -1,0 +1,20 @@
+.action-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 1rem 0;
+}
+
+.products_container {
+    display: grid;
+
+    /* 
+    - auto-fit: cria o máximo de colunas possível no espaço disponível
+    - minmax(350px, 1fr):
+        * mínimo: 350px → cada coluna nunca fica menor que isso
+        * máximo: 1fr → ocupa o espaço disponível dividindo igualmente
+    */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+
+    gap: 1rem;
+}
