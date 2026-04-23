@@ -4,6 +4,6 @@
 
 <div class="products_container">
   @for (product of products; track product.id) {
-    <app-card [product]="product" />
+    <app-card [product]="product" (editClicked)="onEdit(product)"/>
   }
 </div>

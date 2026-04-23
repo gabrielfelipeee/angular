@@ -10,11 +10,19 @@ import { ProductPayload } from '../interfaces/product-payload.interface';
 export class ProductsService {
   private readonly httpClient = inject(HttpClient);
 
+  getById(id: string): Observable<Product> {
+    return this.httpClient.get<Product>(`/api/products/${id}`);
+  };
+
   getAll(): Observable<Product[]> {
     return this.httpClient.get<Product[]>('/api/products');
   };
 
   add(payload: ProductPayload): Observable<Product> {
     return this.httpClient.post<Product>('/api/products', payload);
+  }
+
+  update(id: string, payload: ProductPayload): Observable<Product> {
+    return this.httpClient.put<Product>(`/api/products/${id}`, payload);
   }
 }

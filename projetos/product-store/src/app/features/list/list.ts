@@ -3,7 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ProductsService } from '../../shared/services/products.service';
 import { Product } from '../../shared/interfaces/product.interface';
 import { Card } from "./components/card/card";
-import { RouterLink } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-list',
@@ -18,6 +18,7 @@ import { RouterLink } from "@angular/router";
 export class List implements OnInit {
   private readonly productService = inject(ProductsService);
   private readonly changeDetector = inject(ChangeDetectorRef);
+  private readonly router = inject(Router);
 
   products: Product[] = [];
 
@@ -26,5 +27,9 @@ export class List implements OnInit {
       this.products = response;
       this.changeDetector.detectChanges();
     });
-  }
+  };
+
+  onEdit(product: Product) {
+    this.router.navigate(['/editar-produto', product.id]);
+  };
 }

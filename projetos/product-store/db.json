@@ -1,16 +1,8 @@
 {
   "products": [
     {
-      "id": "fefrf",
-      "title": "Prodcuct Test"
-    },
-    {
-      "id": "08fc",
-      "title": "Teste"
-    },
-    {
-      "id": "5433",
-      "title": "Teste"
+      "title": "123456",
+      "id": "5433"
     },
     {
       "id": "8d72",
@@ -35,6 +27,14 @@
     {
       "id": "80b3",
       "title": "Tënis"
+    },
+    {
+      "title": "Gabriel",
+      "id": "4330"
+    },
+    {
+      "title": "teste 12345",
+      "id": "59a3"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
