@@ -14,11 +14,16 @@ import { Product } from '../../../../shared/interfaces/product.interface';
 })
 export class Card {
   product = input.required<Product>();
-  editClicked = output<void>();
+  edit = output<void>();
+  delete = output<void>();
 
   productTitle = computed(() => this.product().title);
 
   onEdit = () => {
-    this.editClicked.emit()
+    this.edit.emit()
+  };
+
+  onDelete = () => {
+    this.delete.emit()
   };
 }
