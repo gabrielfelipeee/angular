@@ -1,12 +1,14 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { ProductsService } from '../../shared/services/products.service';
 import { Product } from '../../shared/interfaces/product.interface';
 import { Card } from "./components/card/card";
-import { Router, RouterLink } from "@angular/router";
+import { ActivatedRoute, Router, RouterLink } from "@angular/router";
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { exhaustMap, filter, tap } from 'rxjs';
+import { exhaustMap, filter } from 'rxjs';
 import { ConfirmationDialogService } from '../../shared/services/confirmation-dialog.service';
+import { MatIconModule } from '@angular/material/icon';
+import { NoItems } from "./components/no-items/no-items";
 
 @Component({
   selector: 'app-list',
@@ -14,22 +16,20 @@ import { ConfirmationDialogService } from '../../shared/services/confirmation-di
   styleUrl: './list.scss',
   imports: [
     MatButtonModule,
+    MatIconModule,
     Card,
-    RouterLink
-  ]
+    RouterLink,
+    NoItems
+]
 })
-export class List implements OnInit {
+export class List {
   private readonly productService = inject(ProductsService);
   private readonly confirmationDialogService = inject(ConfirmationDialogService);
   private readonly matSnackBar = inject(MatSnackBar);
 
   private readonly router = inject(Router);
 
-  products = signal<Product[]>([]);
-
-  ngOnInit() {
-    this.productService.getAll().subscribe(response => this.products.set(response));
-  };
+  products = signal<Product[]>(inject(ActivatedRoute).snapshot.data['products']);
 
   onEdit(product: Product) {
     this.router.navigate(['/editar-produto', product.id]);
@@ -38,7 +38,7 @@ export class List implements OnInit {
   onDelete(product: Product) {
 
     this.confirmationDialogService.openDialog()
-    
+
       // pipe: Método que cria um “pipeline” de operações.
       .pipe(
 

@@ -1,12 +1,15 @@
-import { ActivatedRoute, ActivatedRouteSnapshot, Router, RouterStateSnapshot, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { List } from './features/list/list';
-import { inject } from '@angular/core';
-import { ProductsService } from './shared/services/products.service';
+import { getProductsResolver } from './shared/resolvers/get-products.resolver';
+import { getProductResolver } from './shared/resolvers/get-product.resolver';
 
 export const routes: Routes = [
     {
         path: '',
-        component: List
+        component: List,
+        resolve: {
+            products: getProductsResolver
+        },
     },
     {
         path: 'novo-produto',
@@ -15,11 +18,7 @@ export const routes: Routes = [
     {
         path: 'editar-produto/:id',
         resolve: {
-            product: (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-                const productService = inject(ProductsService);
-
-                return productService.getById(route.params['id']);
-            }
+            product: getProductResolver
         },
         loadComponent: () => import('./features/edit/edit').then(m => m.Edit)
     }

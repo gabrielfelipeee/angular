@@ -1,16 +1,24 @@
 {
   "products": [
     {
-      "id": "bd82",
-      "title": "Arroz"
+      "title": "SSD",
+      "id": "f630"
     },
     {
-      "title": "Feijão",
-      "id": "2a34"
+      "title": "RAM",
+      "id": "7813"
     },
     {
-      "id": "12e0",
-      "title": "teste"
+      "title": "HD",
+      "id": "226f"
+    },
+    {
+      "id": "e0c4",
+      "title": "MOUSE"
+    },
+    {
+      "id": "ef78",
+      "title": "TECLADO"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
